@@ -4,4 +4,13 @@ let input = "1\n00:00:07,001 --> 00:00:09,015 position:50,00%,middle align:middl
 
 let res = parse_subtitle input
 
-let () = assert ((Option.get res).text = "tota")
+let test_text () = 
+  Alcotest.(check string) "same string" "This is a subtitle text" (Option.get res).text
+
+let () =
+  let open Alcotest in
+  run "subtitles" [
+    "base", [
+      test_case "Lower case" `Quick test_text;
+    ]
+  ]
