@@ -5,11 +5,11 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github lucas-deangelis/subtitles))
 
-(authors "Author Name")
+(authors "Lucas DE ANGELIS <deangelis.lucas@outlook.com>")
 
-(maintainers "Maintainer Name")
+(maintainers "Lucas DE ANGELIS <deangelis.lucas@outlook.com>")
 
 (license LICENSE)
 
@@ -20,6 +20,7 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune)
+ (allow_empty)
  (tags
   (topics "to describe" your project)))
 

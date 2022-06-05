@@ -1,4 +1,0 @@
-(executable
- (public_name subtitles)
- (name main)
- (libraries subtitles))
