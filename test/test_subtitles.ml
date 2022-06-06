@@ -30,7 +30,7 @@ let test_file_carriage_return_and_newline () = generate_test_file "\r\n"
 let () =
   let open Alcotest in
   run "subtitles" [
-    "base", [
+    "subtitle", [
       test_case "Two lines of text, newline only" `Quick test_text;
       test_case "Two lines of text, carriage return only" `Quick test_text_carriage_return;
       test_case "Two lines of text, carriage return and newline" `Quick test_text_carriage_return_and_newline;
