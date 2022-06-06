@@ -10,6 +10,7 @@ bug-reports: "https://github.com/lucas-deangelis/subtitles/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.2"}
+  "alcotest" {with-test}
   "odoc" {with-doc}
 ]
 build: [

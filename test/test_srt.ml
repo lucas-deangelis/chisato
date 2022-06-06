@@ -1,4 +1,4 @@
-open Subtitles
+open Srt
  
 let generate_test (separator: string) =
   let text = ["This is a subtitle text"; "This is a second line"] in

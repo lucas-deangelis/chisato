@@ -19,7 +19,7 @@
  (name subtitles)
  (synopsis "Extract text from subtitles files")
  (description "Extract text from subtitles files. Currently supported: .srt")
- (depends ocaml dune)
+ (depends ocaml dune (alcotest :with-test))
  (allow_empty))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
