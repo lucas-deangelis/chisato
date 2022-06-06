@@ -1,2 +1,3 @@
 (library
- (name subtitles))
+ (name subtitles)
+ (libraries str))
