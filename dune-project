@@ -13,15 +13,13 @@
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
+; (documentation "url to documentation")
 
 (package
  (name subtitles)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Extract text from subtitles files")
+ (description "Extract text from subtitles files. Currently supported: .srt")
  (depends ocaml dune)
- (allow_empty)
- (tags
-  (topics "to describe" your project)))
+ (allow_empty))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
