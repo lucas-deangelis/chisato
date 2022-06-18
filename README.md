@@ -11,11 +11,11 @@ A library to extract the text from various forms of subtitles.
 
 ### Before v1
 
+- [x] Harmonize `parse_file_contents` and the `subtitle` type
 - [ ] Support for `.ass`/`.ssa` files
   - [x] Basic support with `\n` line ending
   - [ ] Support for `\r`, `\r\n`
 - [ ] Function that takes a filepath as parameter for convenience
-- [ ] Harmonize `parse_file_contents` and the `subtitle` type
 - [ ] Executable that reads a file, recognizes the extension and prints out all the text
 - [ ] Basic documentation
 

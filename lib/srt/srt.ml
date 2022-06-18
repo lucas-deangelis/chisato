@@ -1,4 +1,4 @@
-type subtitle = { text: string list }
+type subtitle = { text: string }
 
 let count_character (c: char) (s: string): int =
   let total = ref 0 in
@@ -14,7 +14,9 @@ let extract_text (c: char) (str: string) =
     let text = lst
     |> List.tl
     |> List.tl
-    |> List.map String.trim in
+    |> List.map String.trim 
+    |> String.concat "\n"
+  in
   Some {text}
   else None
 
@@ -26,7 +28,7 @@ let parse_subtitle (sub: string): subtitle option =
   else
     extract_text '\n' sub
 
-let parse_file_contents (file_contents: string): subtitle option list =
+let parse_file_contents (file_contents: string): subtitle list =
   let carriage_returns = count_character '\r' file_contents in
   let newlines = count_character '\n' file_contents in
   if carriage_returns > newlines then
@@ -34,13 +36,19 @@ let parse_file_contents (file_contents: string): subtitle option list =
     |> Re.split ("\r\r" |> Re.Posix.re |> Re.Posix.compile)
     |> List.map String.trim
     |> List.map (fun x -> extract_text '\r' x)
+    |> List.filter Option.is_some
+    |> List.map Option.get
   else if newlines > carriage_returns then
     file_contents
     |> Re.split ("\n\n" |> Re.Posix.re |> Re.Posix.compile)
     |> List.map String.trim
     |> List.map (fun x -> extract_text '\n' x)
+    |> List.filter Option.is_some
+    |> List.map Option.get
   else
     file_contents
     |> Re.split ("\r\n\r\n" |> Re.Posix.re |> Re.Posix.compile)
     |> List.map String.trim
     |> List.map (fun x -> extract_text '\n' x)
+    |> List.filter Option.is_some
+    |> List.map Option.get

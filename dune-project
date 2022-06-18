@@ -18,7 +18,7 @@
 (package
  (name subtitles)
  (synopsis "Extract text from subtitles files")
- (description "Extract text from subtitles files. Currently supported: .srt")
+ (description "Extract text from subtitles files. Currently supports .srt and .ssa/.ass")
  (depends (ocaml (>= 4.08)) dune re (alcotest :with-test))
  (allow_empty))
 

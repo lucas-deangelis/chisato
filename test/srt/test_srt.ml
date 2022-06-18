@@ -4,7 +4,7 @@ let generate_test (separator: string) =
   let text = ["This is a subtitle text"; "This is a second line"] in
   let input = String.concat separator (["1"; "00:00:07,001 --> 00:00:09,015 position:50,00%,middle align:middle size:80,00% line:84,67%"] @ text) in
   let res = parse_subtitle input in
-  Alcotest.(check (list string)) "same string" text (Option.get res).text
+  Alcotest.(check string) "same string" (String.concat "\n" text) (Option.get res).text
 
 let test_text () = generate_test "\n"
 
@@ -19,7 +19,7 @@ let generate_test_file (separator: string) =
   let second_sub = String.concat separator (["2"; "00:00:07,001 --> 00:00:09,015 position:50,00%,middle align:middle size:80,00% line:84,67%"] @ second_sub_text) in
   let input = String.concat (separator ^ separator) [first_sub; second_sub] in
   let res = parse_file_contents input in
-  Alcotest.(check (list (list string))) "same string" [["This is a subtitle text"; "This is a second line"]; ["The second subtitle"; "Second subtitle, second line"]] (List.map (fun x -> (Option.get x).text) res)
+  Alcotest.(check (list string)) "same string" [("This is a subtitle text\nThis is a second line"); ("The second subtitle\nSecond subtitle, second line")] (List.map (fun x -> x.text) res)
 
 let test_file () = generate_test_file "\n"
 
