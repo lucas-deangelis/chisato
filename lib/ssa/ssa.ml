@@ -19,22 +19,19 @@ let parse_from_string (s: string): subtitle list =
   let carriage_returns = count_character '\r' s in
   let newlines = count_character '\n' s in
   let reg = "Dialogue:.*,(.*)$" |> Re.Posix.re |> Re.Posix.compile in
-  if newlines > carriage_returns then
-  s
-  |> String.split_on_char '\n'
-  |> List.map (fun line -> get_text reg line)
-  |> List.filter Option.is_some
-  |> List.map (fun text -> {text = Option.get text})
-  else if carriage_returns > newlines then
-  s
-  |> String.split_on_char '\r'
-  |> List.map (fun line -> get_text reg line)
-  |> List.filter Option.is_some
-  |> List.map (fun text -> {text = Option.get text})
-  else
-  s
-  |> String.split_on_char '\r'
-  |> List.map String.trim
+  let lines =
+    if newlines > carriage_returns then
+      s
+      |> String.split_on_char '\n'
+    else if carriage_returns > newlines then
+      s
+      |> String.split_on_char '\r'
+    else
+      s
+      |> String.split_on_char '\r'
+      |> List.map String.trim
+  in
+  lines
   |> List.map (fun line -> get_text reg line)
   |> List.filter Option.is_some
   |> List.map (fun text -> {text = Option.get text})

@@ -31,27 +31,26 @@ let parse_subtitle (sub: string): subtitle option =
 let parse_from_string (file_contents: string): subtitle list =
   let carriage_returns = count_character '\r' file_contents in
   let newlines = count_character '\n' file_contents in
-  if carriage_returns > newlines then
-    file_contents
-    |> Re.split ("\r\r" |> Re.Posix.re |> Re.Posix.compile)
-    |> List.map String.trim
-    |> List.map (fun x -> extract_text '\r' x)
-    |> List.filter Option.is_some
-    |> List.map Option.get
-  else if newlines > carriage_returns then
-    file_contents
-    |> Re.split ("\n\n" |> Re.Posix.re |> Re.Posix.compile)
-    |> List.map String.trim
-    |> List.map (fun x -> extract_text '\n' x)
-    |> List.filter Option.is_some
-    |> List.map Option.get
-  else
-    file_contents
-    |> Re.split ("\r\n\r\n" |> Re.Posix.re |> Re.Posix.compile)
-    |> List.map String.trim
-    |> List.map (fun x -> extract_text '\n' x)
-    |> List.filter Option.is_some
-    |> List.map Option.get
+  let lines =
+    if carriage_returns > newlines then
+      file_contents
+      |> Re.split ("\r\r" |> Re.Posix.re |> Re.Posix.compile)
+      |> List.map String.trim
+      |> List.map (fun x -> extract_text '\r' x)
+    else if newlines > carriage_returns then
+      file_contents
+      |> Re.split ("\n\n" |> Re.Posix.re |> Re.Posix.compile)
+      |> List.map String.trim
+      |> List.map (fun x -> extract_text '\n' x)
+    else
+      file_contents
+      |> Re.split ("\r\n\r\n" |> Re.Posix.re |> Re.Posix.compile)
+      |> List.map String.trim
+      |> List.map (fun x -> extract_text '\n' x)
+  in
+  lines
+  |> List.filter Option.is_some
+  |> List.map Option.get
 
 let parse_from_file (filename: string): subtitle list =
   In_channel.with_open_bin filename In_channel.input_all
