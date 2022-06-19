@@ -15,7 +15,7 @@ let get_text re line =
   | None -> None
   
 
-let parse_file_contents (s: string): subtitle list =
+let parse_from_string (s: string): subtitle list =
   let carriage_returns = count_character '\r' s in
   let newlines = count_character '\n' s in
   let reg = "Dialogue:.*,(.*)$" |> Re.Posix.re |> Re.Posix.compile in
@@ -38,3 +38,7 @@ let parse_file_contents (s: string): subtitle list =
   |> List.map (fun line -> get_text reg line)
   |> List.filter Option.is_some
   |> List.map (fun text -> {text = Option.get text})
+
+let parse_from_file (filename: string): subtitle list =
+  In_channel.with_open_bin filename In_channel.input_all
+  |> parse_from_string

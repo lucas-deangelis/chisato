@@ -28,7 +28,7 @@ let parse_subtitle (sub: string): subtitle option =
   else
     extract_text '\n' sub
 
-let parse_file_contents (file_contents: string): subtitle list =
+let parse_from_string (file_contents: string): subtitle list =
   let carriage_returns = count_character '\r' file_contents in
   let newlines = count_character '\n' file_contents in
   if carriage_returns > newlines then
@@ -52,3 +52,7 @@ let parse_file_contents (file_contents: string): subtitle list =
     |> List.map (fun x -> extract_text '\n' x)
     |> List.filter Option.is_some
     |> List.map Option.get
+
+let parse_from_file (filename: string): subtitle list =
+  In_channel.with_open_bin filename In_channel.input_all
+  |> parse_from_string

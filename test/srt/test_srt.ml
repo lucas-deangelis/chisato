@@ -18,7 +18,7 @@ let generate_test_file (separator: string) =
   let first_sub = String.concat separator (["1"; "00:00:07,001 --> 00:00:09,015 position:50,00%,middle align:middle size:80,00% line:84,67%"] @ first_sub_text) in
   let second_sub = String.concat separator (["2"; "00:00:07,001 --> 00:00:09,015 position:50,00%,middle align:middle size:80,00% line:84,67%"] @ second_sub_text) in
   let input = String.concat (separator ^ separator) [first_sub; second_sub] in
-  let res = parse_file_contents input in
+  let res = parse_from_string input in
   Alcotest.(check (list string)) "same string" [("This is a subtitle text\nThis is a second line"); ("The second subtitle\nSecond subtitle, second line")] (List.map (fun x -> x.text) res)
 
 let test_file () = generate_test_file "\n"

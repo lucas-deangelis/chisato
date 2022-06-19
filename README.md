@@ -5,7 +5,7 @@ A library to extract the text from various forms of subtitles.
 ## Features
 
 - Extract text from `.srt` files, while handling all lines terminators (`\n`, `\r`, `\r\n`)
-- Extract text from `.ass`/`.ssa` files
+- Extract text from `.ass`/`.ssa` files, while handling all lines terminators (`\n`, `\r`, `\r\n`)
 
 ## Todo
 
@@ -15,9 +15,9 @@ A library to extract the text from various forms of subtitles.
 - [x] Support for `.ass`/`.ssa` files
   - [x] Basic support with `\n` line ending
   - [x] Support for `\r`, `\r\n`
-- [ ] Function that takes a filepath as parameter for convenience
+- [x] Function that takes a filename as parameter for convenience
 - [ ] Executable that reads a file, recognizes the extension and prints out all the text
-- [ ] Basic documentation
+- [ ] Basic documentation (how to use, example program)
 
 ### More long term
 
