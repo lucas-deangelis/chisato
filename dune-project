@@ -19,7 +19,7 @@
  (name subtitles)
  (synopsis "Extract text from subtitles files")
  (description "Extract text from subtitles files. Currently supports .srt and .ssa/.ass")
- (depends (ocaml (>= 4.14)) dune re (alcotest :with-test))
+ (depends (ocaml (>= 4.08)) (dune (=> 3.2)) re (alcotest :with-test))
  (allow_empty))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
