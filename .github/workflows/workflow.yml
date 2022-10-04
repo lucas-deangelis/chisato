@@ -11,7 +11,7 @@ jobs:
           - ubuntu-latest
           - windows-latest
         ocaml-compiler:
-          - 4.08.x
+          - 4.14.x
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
@@ -33,7 +33,7 @@ jobs:
           - ubuntu-latest
           - windows-latest
         ocaml-compiler:
-          - 4.08.x
+          - 4.14,apf.x
 
     runs-on: ${{ matrix.os }}
 
